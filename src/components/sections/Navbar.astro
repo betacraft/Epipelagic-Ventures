@@ -57,7 +57,7 @@ const navLinks = [
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="lg:hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out mx-0 mt-2 bg-surface border border-border rounded-2xl"
+    class="lg:hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out mx-0 mt-2 bg-surface rounded-2xl"
   >
     <div class="px-6 py-5 flex flex-col gap-4">
       {navLinks.map((link) => (
@@ -136,12 +136,12 @@ const navLinks = [
     isMenuOpen = !isMenuOpen;
     if (isMenuOpen) {
       mobileMenu?.classList.remove("max-h-0");
-      mobileMenu?.classList.add("max-h-96");
+      mobileMenu?.classList.add("max-h-96", "border", "border-border");
       menuLine1?.classList.add("rotate-45", "translate-y-[4px]");
       menuLine2?.classList.add("-rotate-45", "-translate-y-[3px]");
     } else {
       mobileMenu?.classList.add("max-h-0");
-      mobileMenu?.classList.remove("max-h-96");
+      mobileMenu?.classList.remove("max-h-96", "border", "border-border");
       menuLine1?.classList.remove("rotate-45", "translate-y-[4px]");
       menuLine2?.classList.remove("-rotate-45", "-translate-y-[3px]");
     }
