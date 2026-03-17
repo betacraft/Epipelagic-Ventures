@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — matched to Baseframe screenshot */
+  --color-primary: #1a1a1a;
+  --color-primary-light: #2d2d2d;
+  --color-primary-dark: #000000;
+  --color-accent: #d4a843;
+  --color-accent-hover: #c49a35;
+  --color-surface: #f0ebe4;
+  --color-surface-light: #f5f1ec;
+  --color-surface-card: #e8e2da;
+  --color-surface-dark: #3d3a34;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #5a5a5a;
+  --color-text-muted: #9a9590;
+  --color-text-inverse: #f0ebe4;
+  --color-border: #d4cec6;
+  --color-border-light: #e0dbd4;
+
+  /* Fonts — IBM Plex family */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "IBM Plex Serif", ui-serif, Georgia, serif;
+}
+
+/* ===== Baseframe Typography — base properties only ===== */
+/* Sizes, line-heights are set per-component via Tailwind classes */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+body, p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.text-large {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.text-small {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.33;
+  font-weight: 400;
+}
+.label-lg {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.33;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.label-sm {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 1.33;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Base styles ===== */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+/* GPU-accelerated animation hints */
+[data-animate], [data-stagger] > * {
+  will-change: transform, opacity;
+}
+
+/* Reduced motion: disable all animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-animate], [data-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 30px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}

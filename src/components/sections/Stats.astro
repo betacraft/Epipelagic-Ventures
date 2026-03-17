@@ -1,0 +1,103 @@
+---
+const stats = [
+  { value: "10+", label: "Years of experience", width: "48" },
+  { value: "12–18", label: "Months engagement", width: "68" },
+  { value: "100%", label: "Founder commitment", width: "88" },
+];
+---
+
+<section class="relative py-24 px-4 sm:px-6 lg:px-8" aria-label="Statistics">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Left: Portrait image -->
+      <div class="relative" data-animate="up">
+        <div class="rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop&crop=face"
+            alt="Epipelagic team member"
+            width="800"
+            height="960"
+            loading="lazy"
+            decoding="async"
+            class="w-full aspect-[7/8] object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Right: Stats content -->
+      <div data-animate="up" data-delay="0.1">
+        <!-- Label -->
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          <span class="font-mono text-[10px] font-medium leading-[1.33] tracking-[0.12em] uppercase text-text-muted">
+            Statistics
+          </span>
+        </div>
+
+        <!-- Heading -->
+        <h2 class="font-display text-[28px] sm:text-[32px] md:text-[40px] font-normal leading-[1.1] tracking-[-0.02em] text-text-primary mb-12">
+          Numbers don't tell the whole story, but they point in the right direction.
+        </h2>
+
+        <!-- Stat bars container with single left line -->
+        <div class="relative pl-6">
+          <!-- Single continuous vertical line on the left -->
+          <div class="absolute left-0 top-0 bottom-0 w-px bg-[#c5bdb4]"></div>
+
+          <div class="flex flex-col gap-6">
+            {stats.map((stat, i) => (
+              <div class="stat-bar relative" data-animate="up" data-delay={String(0.2 + i * 0.12)}>
+                <!-- The gradient bar -->
+                <div
+                  class="stat-fill relative overflow-hidden origin-left rounded-[10px]"
+                  style={`width: ${stat.width}%; transform: scaleX(0);`}
+                >
+                  <!-- Gradient: solid warm beige left, fading to page bg right -->
+                  <div class="absolute inset-0 rounded-[10px]" style="background: linear-gradient(to left, #e2dbd3, #e8e3dc 50%, #f0ebe4 100%);"></div>
+                  <!-- Inner content with padding -->
+                  <div class="relative z-10 px-5 py-5">
+                    <div class="font-display text-[28px] sm:text-[32px] font-normal leading-[1] tracking-[-0.02em] text-text-primary">
+                      {stat.value}
+                    </div>
+                    <div class="font-mono text-[10px] font-medium tracking-[0.12em] uppercase text-text-muted mt-2">
+                      {stat.label}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <p class="font-mono text-[9px] font-medium leading-[1.5] tracking-[0.08em] uppercase text-text-muted mt-10 pl-6 max-w-md">
+          *Statistics reflect directional improvement based on founder feedback and internal review, measured over time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll(".stat-fill").forEach((bar) => {
+    gsap.fromTo(
+      bar,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        duration: 1.4,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: bar,
+          start: "top 92%",
+          once: true,
+        },
+      }
+    );
+  });
+</script>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+}
+
+const { label, title, description, align = "left" } = Astro.props;
+const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
+---
+
+<div class={`max-w-2xl mb-12 ${alignClass}`} data-animate="up">
+  {label && (
+    <span class="font-mono text-[10px] font-medium leading-[1.33] tracking-[0.12em] uppercase text-text-muted mb-4 block">
+      {label}
+    </span>
+  )}
+  <h2 class="font-display text-[28px] sm:text-[36px] md:text-[48px] font-normal leading-[1] tracking-[-0.02em] text-text-primary mb-4">
+    <Fragment set:html={title} />
+  </h2>
+  {description && (
+    <p class="font-sans text-[16px] font-normal leading-[1.5] text-text-secondary">
+      {description}
+    </p>
+  )}
+</div>

@@ -1,0 +1,64 @@
+---
+const items = [
+  "Funding",
+  "Mentorship",
+  "Resources",
+  "Networking",
+  "Education",
+  "Workspace",
+  "Long-term Support",
+  "Kendall Square",
+  "12–18+ Months",
+  "Startup Ecosystem",
+];
+---
+
+<section class="relative py-8 my-8 overflow-hidden" aria-label="Our key offerings">
+  <div class="marquee-container flex">
+    <!-- First set -->
+    <div class="marquee-track flex shrink-0 items-center gap-8">
+      {items.map((item) => (
+        <div class="flex items-center gap-8 shrink-0">
+          <span class="font-display text-[20px] sm:text-[24px] font-normal tracking-[-0.01em] text-text-primary whitespace-nowrap">
+            {item}
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+        </div>
+      ))}
+    </div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-track flex shrink-0 items-center gap-8" aria-hidden="true">
+      {items.map((item) => (
+        <div class="flex items-center gap-8 shrink-0">
+          <span class="font-display text-[20px] sm:text-[24px] font-normal tracking-[-0.01em] text-text-primary whitespace-nowrap">
+            {item}
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-container {
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-container:hover {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-container {
+      animation: none;
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

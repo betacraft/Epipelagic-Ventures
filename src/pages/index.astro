@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/sections/Navbar.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Marquee from "@/components/sections/Marquee.astro";
+import Features from "@/components/sections/Features.astro";
+import Stats from "@/components/sections/Stats.astro";
+import About from "@/components/sections/About.astro";
+import Portfolio from "@/components/sections/Portfolio.astro";
+import CTA from "@/components/sections/CTA.astro";
+import Footer from "@/components/sections/Footer.astro";
+import "@/styles/global.css";
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <Hero />
+    <Marquee />
+    <!-- Main content anchor for skip link -->
+    <div id="main-content"></div>
+    <Features />
+    <Stats />
+    <About />
+    <Portfolio />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

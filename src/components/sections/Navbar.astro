@@ -1,0 +1,148 @@
+---
+const navLinks = [
+  { label: "Studio", href: "#about" },
+  { label: "Venture", href: "#features" },
+  { label: "About", href: "#portfolio" },
+  { label: "Opportunities", href: "#contact" },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 pt-4 px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out" aria-label="Main navigation">
+  <div id="navbar-inner" class="mx-auto border border-border rounded-2xl px-6 py-3 flex items-center justify-between transition-all duration-500 ease-in-out max-w-none" style="background-color: #faf8f5;">
+    <!-- Logo (Left) -->
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <svg class="w-5 h-5 text-text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+      <span class="font-display text-[18px] font-medium tracking-[-0.02em] text-text-primary">
+        Epipelagic<span class="text-text-muted align-super text-[10px] ml-0.5">™</span>
+      </span>
+    </a>
+
+    <!-- Nav links (Center) -->
+    <div class="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="font-sans text-[15px] font-normal leading-[1.5] text-text-secondary hover:text-text-primary transition-colors duration-200"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA (Right) -->
+    <a
+      href="#contact"
+      class="hidden sm:inline-flex items-center gap-2 shrink-0 bg-primary text-text-inverse font-sans text-[13px] font-medium leading-[1] px-5 py-2.5 rounded-full hover:bg-primary-light transition-colors duration-200"
+    >
+      Contact
+    </a>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="sm:hidden flex flex-col gap-1.5 p-2 -mr-2"
+      aria-label="Toggle menu"
+    >
+      <span class="w-5 h-[1.5px] bg-text-primary transition-all duration-300 origin-center" id="menu-line-1"></span>
+      <span class="w-5 h-[1.5px] bg-text-primary transition-all duration-300 origin-center" id="menu-line-2"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="sm:hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out mx-0 mt-2 bg-surface border border-border rounded-2xl"
+  >
+    <div class="px-6 py-5 flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="font-sans text-[15px] font-normal leading-[1.5] text-text-secondary hover:text-text-primary transition-colors duration-200"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center bg-primary text-text-inverse font-sans text-[13px] font-medium px-5 py-2.5 rounded-full hover:bg-primary-light transition-colors duration-200 mt-2"
+      >
+        Contact
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const navbarInner = document.getElementById("navbar-inner");
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuLine1 = document.getElementById("menu-line-1");
+  const menuLine2 = document.getElementById("menu-line-2");
+  let isMenuOpen = false;
+  let isCompact = false;
+
+  // Hero section height — navbar goes compact after scrolling past hero
+  function getHeroHeight() {
+    const hero = document.querySelector("section");
+    return hero ? hero.offsetHeight * 0.3 : 200;
+  }
+
+  function setCompact() {
+    if (isCompact) return;
+    isCompact = true;
+    if (navbar) {
+      navbar.style.paddingLeft = "25%";
+      navbar.style.paddingRight = "25%";
+    }
+    if (navbarInner) {
+      navbarInner.classList.add("backdrop-blur-xl");
+      navbarInner.style.backgroundColor = "rgba(250, 248, 245, 0.95)";
+      navbarInner.style.boxShadow = "0 4px 30px rgba(0,0,0,0.06)";
+    }
+  }
+
+  function setFull() {
+    if (!isCompact) return;
+    isCompact = false;
+    if (navbar) {
+      navbar.style.paddingLeft = "";
+      navbar.style.paddingRight = "";
+    }
+    if (navbarInner) {
+      navbarInner.classList.remove("backdrop-blur-xl");
+      navbarInner.style.backgroundColor = "#faf8f5";
+      navbarInner.style.boxShadow = "none";
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    const threshold = getHeroHeight();
+    if (window.scrollY > threshold) {
+      setCompact();
+    } else {
+      setFull();
+    }
+  });
+
+  // Mobile menu toggle
+  mobileMenuBtn?.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove("max-h-0");
+      mobileMenu?.classList.add("max-h-96");
+      menuLine1?.classList.add("rotate-45", "translate-y-[4px]");
+      menuLine2?.classList.add("-rotate-45", "-translate-y-[3px]");
+    } else {
+      mobileMenu?.classList.add("max-h-0");
+      mobileMenu?.classList.remove("max-h-96");
+      menuLine1?.classList.remove("rotate-45", "translate-y-[4px]");
+      menuLine2?.classList.remove("-rotate-45", "-translate-y-[3px]");
+    }
+  });
+</script>
