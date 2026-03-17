@@ -24,11 +24,11 @@ const navLinks = [
     </a>
 
     <!-- Nav links (Center) -->
-    <div class="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+    <div class="hidden lg:flex items-center gap-8">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="font-sans text-[15px] font-normal leading-[1.5] text-text-secondary hover:text-text-primary transition-colors duration-200"
+          class="font-sans text-[14px] font-normal leading-[1.5] text-text-secondary hover:text-text-primary transition-colors duration-200 whitespace-nowrap"
         >
           {link.label}
         </a>
@@ -46,7 +46,7 @@ const navLinks = [
     <!-- Mobile menu button -->
     <button
       id="mobile-menu-btn"
-      class="sm:hidden flex flex-col gap-1.5 p-2 -mr-2"
+      class="lg:hidden flex flex-col gap-1.5 p-2 -mr-2"
       aria-label="Toggle menu"
     >
       <span class="w-5 h-[1.5px] bg-text-primary transition-all duration-300 origin-center" id="menu-line-1"></span>
@@ -57,7 +57,7 @@ const navLinks = [
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="sm:hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out mx-0 mt-2 bg-surface border border-border rounded-2xl"
+    class="lg:hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out mx-0 mt-2 bg-surface border border-border rounded-2xl"
   >
     <div class="px-6 py-5 flex flex-col gap-4">
       {navLinks.map((link) => (
