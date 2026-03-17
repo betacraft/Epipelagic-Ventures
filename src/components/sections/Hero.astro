@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="relative px-4 sm:px-6 lg:px-8 pt-[88px] pb-4" aria-label="Hero">
@@ -8,7 +9,7 @@
     <!-- Background image — fetchpriority high for LCP -->
     <div class="absolute inset-0">
       <img
-        src="/11.jpg"
+        src={`${base}11.jpg`}
         alt=""
         role="presentation"
         width="1400"
@@ -90,7 +91,7 @@
                   class="w-full h-full object-cover"
                   aria-label="Epipelagic Ventures showreel"
                 >
-                  <source src="/epip.mp4" type="video/mp4" />
+                  <source src={`${base}epip.mp4`} type="video/mp4" />
                 </video>
               </div>
               <div class="flex items-center justify-between mt-2.5 px-1">

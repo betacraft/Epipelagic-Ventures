@@ -5,6 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://betacraft.github.io",
+  base: "/Epipelagic-Ventures",
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
